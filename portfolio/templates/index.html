@@ -1,6 +1,282 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <h1>Portfolio</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio | {{profile.name}}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <style>
+            .navbarContainer {
+                background-color: black; 
+                height: 115px; 
+                border-bottom-left-radius: 35px; 
+                border-bottom-right-radius: 35px; 
+                display: flex; 
+                padding-left: 70px; 
+                padding-right: 70px;
+                align-items: center;
+            }
+            .navbarText {
+                color: white; 
+                font-family: 'Montserrat', sans-serif; 
+                font-weight: 500; 
+                font-size: 30px;
+            }
+            .navbarIcon {
+                width: 65px; 
+                height: 65px; 
+                background-color: #FFDD55; 
+                border: 2px solid #18191F;
+                border-radius: 50px; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center;
+            }
+            .navbarIconLetter {
+                font-family: 'Montserrat', sans-serif; 
+                font-size: 45px;
+                line-height: 40px;
+                font-weight:bold;
+                color: #18191F;
+            }
+            .aboutmeContainer {
+                border-radius: 20px;
+                background-color: #106EE8;
+                margin-left: 50px;
+                margin-right: 50px;
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+            .title {
+                font-family: 'Montserrat', sans-serif; 
+                font-weight: 800; 
+                font-size: 64px; 
+            }
+            .projectsContainer {
+                background-color: #EB7711;
+                margin-top: 180px;
+                padding: 80px;
+            }
+            .projectCardContainer {
+                width: calc(30% - 10px);
+                margin: 20px 30px 20px 20px;
+                background-color: #A259FF;
+                border: 3px solid #18191F;
+                border-radius: 20px;
+                box-shadow: 10px 12px 1px #000000;
+                text-align: center;
+            }
+            .projectCarTitle {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 800;
+                font-size: 40px;
+                color: #FFFFFF;
+                background-color: #0ACF83;
+                border-radius: 30px;
+                padding: 15px 0px;
+                margin: 15px 40px;
+            }
+            .projectCarDescription {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 28px;
+                color: #FFFFFF;
+                margin: 22px 20px;
+            }
+            .contactsContainer {
+                margin-top: 181px;
+                border-radius: 20px;
+                background-color: #0ACF83;
+                margin-left: 50px;
+                margin-right: 50px;
+                padding-top: 80px;
+                padding-bottom: 80px;
+                height: 548px;
+            }
+            .buttonContainer {
+                background-color: #000000;
+                border-radius: 15px;
+                box-shadow: 8px 7px 1px #00C6AE;
+
+            }
+            .buttonText {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                padding: 12px 30px;
+                font-size: 32px;
+                color: #FFFFFF;
+            }
+        </style>
+    </head>
+    <body style="background-color: #FFDD55; margin: 0;">
+        <!-- Navbar -->
+        <div class="navbarContainer">
+            <div class="navbarIcon" style="background-color: white; position: absolute; margin-top: 5px; margin-left: 5px;">
+            </div>
+            <div style="width: 40%; z-index: 1;">
+                <div class="navbarIcon">
+                    <h1 class="navbarIconLetter">
+                        {{ profile.name|first|upper }}
+                    </h1>
+                </div>
+            </div>
+
+            <div style="width: 60%; display: flex; justify-content: space-between;">
+                <a href="#home" style="text-decoration: none;">
+                    <h1 class="navbarText">
+                        Home
+                    </h1>
+                </a>
+
+                <a href="#about" style="text-decoration: none;">
+                    <h1 class="navbarText">
+                    About
+                    </h1>
+                </a>
+
+                <a href="#projects" style="text-decoration: none;">
+                    <h1 class="navbarText">
+                        Projects
+                    </h1>
+                </a>
+
+                <a href="#contact" style="text-decoration: none;">
+                    <h1 class="navbarText">
+                        Contact
+                    </h1>
+                </a>
+            </div>
+        </div>
+
+        <!-- Home -->
+        <div id="home" style="display: flex; margin-top: 70px; margin-left: 50px; margin-right: 50px;">
+            <div style="width: 50%;align-items: center;">
+                <h1 class="title" style="color: #18191F;margin-bottom: 0;">
+                    Hello, <br>
+                    I'm {{ profile.name }}
+                </h1>
+                    
+                </p>
+                <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 25px; color: #474A57; line-height: 28px;">
+                    {{ profile.title }}
+                </h3>
+                
+                <div style="display: flex;">
+                    <a href="mailto:{{ profile.email }}" style="text-decoration: none;" target="_blank">
+                        <div class="buttonContainer">
+                            <h1 class="buttonText">
+                                Hire me
+                            </h1>
+                        </div>
+                    </a>
+
+                    {% if profile.linkedinUrl %}
+                        <a href="{{ profile.linkedinUrl }}" style="text-decoration: none;margin-left: 50px;" target="_blank">
+                            <div class="buttonContainer">
+                                <h1 class="buttonText">
+                                    Linkedin Profile
+                                </h1>
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if profile.image %}
+                <div style="width: 50%; display: flex; justify-content: flex-end;">
+                    <img src="{{ profile.image.url }}" alt="profile" style="border-radius: 10px; border: 2px solid #18191F; box-shadow: 8px 8px 5px #18191F;">
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- About me -->
+        <div class="aboutmeContainer" id="about" style="margin-top: 180px; display: flex; padding-left: 55px; padding-right: 55px;">
+            {% if profile.image %}
+                <div style="width: 40%;display: flex; justify-content: flex-start">
+                    <img src="{{ profile.image.url }}" alt="profile" style="width: 450px; border-radius: 10px; border: 2px solid #18191F; box-shadow: 8px 8px 4px rgb(0, 0, 0, 0.3);">
+                </div>
+            {% endif %}
+            <div style="width: 60%;">
+                <h1 class="title" style="color: #FFFFFF;margin: 0;">About me</h1>
+                <h3 style="width: 50%; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; color: #FFDD55; line-height: 28px;margin-top: 30px; margin-bottom: 0px;">
+                    {{ profile.title }}
+                </h3>
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 24px; line-height: 34px; font-weight: 700; color: #FFFFFF;margin-top: 20px;">
+                    {{profile.descriptionEN}}
+                </p>
+                <div style="display: flex; justify-content: space-between;">
+                    <a href="mailto:{{ profile.email }}" style="text-decoration: none;" target="_blank">
+                        <div class="buttonContainer">
+                            <h1 class="buttonText">
+                                Hire me
+                            </h1>
+                        </div>
+                    </a>
+
+                    {% if profile.linkedinUrl %}
+                        <a href="{{ profile.linkedinUrl }}" style="text-decoration: none;" target="_blank">
+                            <div class="buttonContainer">
+                                <h1 class="buttonText">
+                                    Linkedin Profile
+                                </h1>
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="projectsContainer" id="projects">
+            <h1 class="title" style="color: #18191F;text-align: center;margin-top: 0;">
+                Projects
+            </h1>
+
+            <div style="display: flex;flex-wrap: wrap;">
+                {% for project in projects %}
+                    <div class="projectCardContainer">
+                        <h2 class="projectCarTitle">
+                            {{project.title}}
+                        </h2>
+    
+                        <p class="projectCarDescription">
+                            {{project.descriptionEN}}
+                        </p>
+    
+                        {% if project.technologies %}
+                            <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 32px; line-height: 34px; color: #000000; background-color: #FFDD55; border-radius: 10px; margin: 35px 50px 20px 50px;padding: 12px 0px;">
+                                Technologies
+                            </h1>
+                            <div style="padding: 10px 50px;">
+                                {% for technology in project.technologies.all %}
+                                    <img src="{{ technology.icon.url }}" style="width: 40px; height: 40px;background-color: #FFFFFF; padding: 5px;border-radius: 10px;"/>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Contacts -->
+        <div class="contactsContainer" id="contact">
+            <h1 class="title" style="color: #FFFFFF;text-align: center;margin-top: 0;">
+                Contacts
+            </h1>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin: 130px 0px;">
+            <a href="https://www.figma.com/community/file/1366191847286274504/personal-portfolio-figma-portfolio-portfolio">
+                <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 500; text-align: center;">
+                    Design Author : Muhammad Aqsam
+                </h1>
+            </a>
+        </div>
     </body>
 </html>

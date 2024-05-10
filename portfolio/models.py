@@ -9,8 +9,22 @@ class Technologies(models.Model):
     def __str__(self):
         return self.name
 
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=255, default=None, blank=True)
+    title = models.CharField(max_length=255, default=None, blank=True)
+    descriptionSP = models.TextField(default=None, blank=True)
+    descriptionEN = models.TextField(default=None, blank=True)
+    image = models.ImageField(upload_to='portfolio/images/profiles', default=None, blank=True)
+    linkedinUrl = models.CharField(max_length=255, default=None, blank=True)
+    githubUrl = models.CharField(max_length=255, default=None, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Project(models.Model):
     title = models.CharField(max_length=100)
+    developer = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None, blank=True, null=True)
     descriptionSP = models.TextField(default=None, blank=True)
     descriptionEN = models.TextField(default=None, blank=True)
     image = models.ImageField(upload_to='portfolio/images/covers', default=None, blank=True)
@@ -24,15 +38,3 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
-
-class Profile(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=255, default=None, blank=True)
-    descriptionSP = models.TextField(default=None, blank=True)
-    descriptionEN = models.TextField(default=None, blank=True)
-    image = models.ImageField(upload_to='portfolio/images/profiles', default=None, blank=True)
-    linkedinUrl = models.CharField(max_length=255, default=None, blank=True)
-    githubUrl = models.CharField(max_length=255, default=None, blank=True)
-
-    def __str__(self):
-        return self.name
