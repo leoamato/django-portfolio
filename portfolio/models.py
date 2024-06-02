@@ -12,6 +12,8 @@ class Technologies(models.Model):
 class Profile(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=255, default=None, blank=True)
+    phone = models.CharField(max_length=255, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, default=None, blank=True)
     descriptionSP = models.TextField(default=None, blank=True)
     descriptionEN = models.TextField(default=None, blank=True)

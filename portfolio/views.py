@@ -14,10 +14,24 @@ def index(request, email):
 
         projects = Project.objects.filter(developer=profile)
 
+        if profile.linkedinUrl:
+            githubIcon = Technologies.objects.get(name="Github")
+        else:
+            githubIcon = None
+
+        if profile.githubUrl:
+            linkedinIcon = Technologies.objects.get(name="Linkedin")
+        else:
+            linkedinIcon = None
+
         context = {
             'profile': profile,
-            'projects': projects
+            'projects': projects,
+            'linkedinIcon': linkedinIcon.icon,
+            'githubIcon': githubIcon.icon
         }
+        
+        print("CONTEXT: ", context)
 
         return render(request, 'index.html', context)
 
